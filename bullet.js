@@ -30,6 +30,7 @@ class bullet{
 			var collideOrNot = collideCircleCircle(this.x, this.y, 10, targetBalloons[i].myX(), targetBalloons[i].myY(), targetBalloons[i].myR())
 			if (collideOrNot){
 				targetBalloons.splice(i,1);
+				random(sounds).play();
 				score += 1;
 				return true;
 			}

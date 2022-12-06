@@ -4,9 +4,10 @@ class turrent{
 
 	display(){
 		push()
-		stroke(230, 255, 0);
-		fill(255);
+		stroke(0, 0, 0);
+		fill(0, 0, 0);
 		ellipse(turPosX, turPosY, 30);
+		image(ufo,turPosX-20,turPosY-20,40,40);
 		pop();
 	}
 

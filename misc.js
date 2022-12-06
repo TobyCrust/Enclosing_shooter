@@ -10,7 +10,7 @@ function drawReticle(){
 	noFill();
 	strokeWeight(2);
 	stroke(0, 100, 125, 125);
-	ellipse(mouseX, mouseY, 15);
+	ellipse(mouseX, mouseY, 12);
 	stroke(80, 160, 200, 125);
 	line(mouseX-8, mouseY-8, mouseX+8, mouseY+8);
 	line(mouseX+8, mouseY-8, mouseX-8, mouseY+8);
@@ -28,11 +28,11 @@ function gameOver(){
 
 	textFont('Georgia');
 	textAlign(CENTER);
-	textSize(50);
+	textSize(100);
 	fill(170,20,20);
 	text("YOU DIED",300,300)
 
-	textFont('Helvetica');
+	textFont('Arial');
 	textSize(18);
 	fill(235);
 	let scoreString = "score: " + score;
@@ -69,6 +69,7 @@ function reset(){
 	balloonSpawnMultiplier = 2;
 	balloonSizeMultiplier = 2;
 	score = 0;
+	s = 0
 
 	loop();
 }

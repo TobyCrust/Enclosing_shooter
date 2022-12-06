@@ -7,13 +7,19 @@ let targetTimer = 0;
 let balloonSpawnMultiplier = 2;
 let balloonSizeMultiplier = 2;
 let score = 0;
+let minute = 0;
 let Retry;
+let s = 0;
+var sounds = [];
+
 
 let highScore = 0;
 
 
 function setup() {
 	createCanvas(600, 600);
+	song = loadSound('shoot_effect.mp3');
+
 	angleMode(DEGREES);
 	mainTurrent = new turrent(300,300);
 	Retry = createButton('retry');
@@ -30,13 +36,32 @@ function mousePressed(){
 	let mouseVector = getMouseVector();
 	oneBullet = new bullet(mouseVector.x, mouseVector.y);
 	bulletsFired.push(oneBullet);
+	song.play();
+
+}
+
+function preload() {
+  rocket= loadImage('rocket.png')
+	ufo= loadImage('Alien.png')
+	sounds.push(loadSound('bangLarge.wav'));
+	sounds.push(loadSound('bangMedium.wav'));
+	sounds.push(loadSound('bangSmall.wav'));
 }
 
 function draw() {
 	background(20);
 
-	drawReticle();
+let s = second();
 
+	drawReticle();
+push();
+	angleMode(DEGREES);
+	       imageMode(CENTER)
+	       let a = atan2(mouseY - height / 2, mouseX - width / 2);
+	       translate(width/2, height/2);
+	       rotate(a);
+	       image(rocket, 0, 0, 48, 26);
+pop();
   print(score);
 
 	//----------------------------------------BALLOONS-SPAWN--------------------------------------
@@ -74,7 +99,7 @@ function draw() {
 
 	balloonSpawnMultiplier += 0.001;
 	if (balloonSizeMultiplier < 5){
-		balloonSizeMultiplier += 0.001;
+		balloonSizeMultiplier += 0.0007;
 	}
 
 	//------------------------------------------HERO-AND-HERO-DED---------------------------------------a
@@ -88,14 +113,19 @@ function draw() {
   textAlign(RIGHT);
   textSize(30);
   text(score,570,40);
+
   textSize(24);
+	text("Time",570,80);
   text("Score",510,40);
+	text(s, 570, 120);
+	text(minute, 570, 150);
+
 
 	//------------------------------------------TUTORIAL------------------------------------------------
 	noStroke();
 	if (targetTimer < 500){
 		textAlign(LEFT);
-		textFont('Helvetica');
+		textFont('Arial');
 		textSize(14);
 
 		text("arrow keys or wasd: move", 35, 35);
@@ -103,6 +133,12 @@ function draw() {
 		text("left click: fire", 35, 65);
 
 	}
-//------------------------------------------Score------------------------------------------------
 
+if( s = 59){
+	minute =+1;
 }
+
+
+	}
+//------------------------------------------Score------------------------------------------------
+df
