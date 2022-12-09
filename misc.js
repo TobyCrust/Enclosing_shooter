@@ -24,19 +24,19 @@ function gameOver(){
 	print("DED");
 	noStroke();
 	fill(20)
-	rect(0,200,600,200)
+	rect(110,200,600,250)
 
 	textFont('Georgia');
 	textAlign(CENTER);
 	textSize(100);
 	fill(170,20,20);
-	text("YOU DIED",300,300)
+	text("YOU DIED",425,300)
 
 	textFont('Arial');
 	textSize(18);
 	fill(235);
 	let scoreString = "score: " + score;
-	text(scoreString, 300, 340);
+	text(scoreString, 425, 340);
 
 	if (score > highScore) {
 		highScore = score;
@@ -45,15 +45,17 @@ function gameOver(){
 	}
 
 	let highScoreString = "highscore: " + highScore;
-	text(highScoreString, 300, 360);
+	text(highScoreString, 425, 360);
 
 	Retry.show();
-	Retry.position(250, 380);
+	Retry.position(390, 380);
 	Retry.size(100,30);
 	Retry.style('background-color', '#202020');
 	Retry.style('color', '#FFFFFF');
 	Retry.mousePressed(reset);
+	gamesong.stop();
 
+	gameover.play();
 	pop();
 	noLoop();
 
@@ -61,6 +63,8 @@ function gameOver(){
 
 function reset(){
 	Retry.hide();
+	mode = 0;
+
 	bulletsFired = [];
 	targetBalloons = [];
 	turPosX = 300;

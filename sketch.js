@@ -1,3 +1,4 @@
+var mode;
 let bulletsFired = [];
 let targetBalloons = [];
 let	mainTurrent;
@@ -7,23 +8,31 @@ let targetTimer = 0;
 let balloonSpawnMultiplier = 2;
 let balloonSizeMultiplier = 2;
 let score = 0;
-let minute = 0;
 let Retry;
-let s = 0;
 var sounds = [];
-
-
 let highScore = 0;
+var stars = [];
+var playerSpeed = 2;
+
 
 
 function setup() {
-	createCanvas(600, 600);
+	createCanvas(850, 700);
+	mode = 0;
+
+	for (var i = 0; i < 500; i++) {
+			stars[i] = new Star();
+		}
+
 	song = loadSound('shoot_effect.mp3');
+	gamesong = loadSound('GameTheme.mp3');
+ 	gameover = loadSound('gameover.mp3');
 
 	angleMode(DEGREES);
 	mainTurrent = new turrent(300,300);
 	Retry = createButton('retry');
 	Retry.hide();
+
 
 	if (!Cookies.get('highscore')){
 		Cookies.set('highscore', '0');
@@ -38,6 +47,7 @@ function mousePressed(){
 	bulletsFired.push(oneBullet);
 	song.play();
 
+
 }
 
 function preload() {
@@ -49,7 +59,19 @@ function preload() {
 }
 
 function draw() {
-	background(20);
+clear();
+if (mode==0) {
+	text('presss Enter to start', 100, 100);
+}
+
+if (mode==1) {
+
+
+	background(27,26,26);
+
+	for (var i = 0; i < stars.length; i++) {
+			stars[i].draw();
+		}
 
 let s = second();
 
@@ -71,6 +93,7 @@ pop();
 	if (targetTimer % spawnInterval == 0){
 		let newBalloon = new balloon();
 		targetBalloons.push(newBalloon);
+
 		score += 5;
 	}
 
@@ -109,16 +132,17 @@ pop();
 		gameOver();
 	}
 
+
+
   fill(225);
-  textAlign(RIGHT);
+  textAlign(LEFT);
   textSize(30);
-  text(score,570,40);
+  text(score,455,40);
 
   textSize(24);
-	text("Time",570,80);
-  text("Score",510,40);
-	text(s, 570, 120);
-	text(minute, 570, 150);
+
+  text("Score",385,40);
+
 
 
 	//------------------------------------------TUTORIAL------------------------------------------------
@@ -134,11 +158,38 @@ pop();
 
 	}
 
-if( s = 59){
-	minute =+1;
-}
+
 
 
 	}
+}
+
+// draw ends -----------------------------------------------------
+
+
+function keyPressed(){
+	if (keyCode==ENTER){
+		mode=1;
+		gamesong.play();
+		gameover.stop();
+	}
+}
+
+
+	class Star {
+	constructor() {
+		this.x = random(width);
+		this.y = random(height);
+		this.size = random(0.25, 3);
+		this.t = random(TAU);
+	}
+
+	draw() {
+		this.t += 0.1;
+		var scale = this.size + sin(this.t) * 1;
+		noStroke();
+		ellipse(this.x, this.y, scale, scale);
+	}
+}
+
 //------------------------------------------Score------------------------------------------------
-df
