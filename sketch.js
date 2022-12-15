@@ -61,7 +61,7 @@ function preload() {
 function draw() {
 clear();
 if (mode==0) {
-	text('presss Enter to start', 100, 100);
+	text('presss Enter to start', 350, 350);
 }
 
 if (mode==1) {
