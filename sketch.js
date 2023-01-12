@@ -2,8 +2,8 @@ var mode;
 let bulletsFired = [];
 let targetBalloons = [];
 let	mainTurrent;
-let turPosX = 300;
-let turPosY = 300;
+let turPosX = 850/2;
+let turPosY = 700/2;
 let targetTimer = 0;
 let balloonSpawnMultiplier = 2;
 let balloonSizeMultiplier = 2;
@@ -52,7 +52,7 @@ function mousePressed(){
 
 function preload() {
   rocket= loadImage('rocket.png')
-	ufo= loadImage('Alien.png')
+	ufo= loadImage('UFO V2.png')
 	sounds.push(loadSound('bangLarge.wav'));
 	sounds.push(loadSound('bangMedium.wav'));
 	sounds.push(loadSound('bangSmall.wav'));
@@ -76,14 +76,16 @@ if (mode==1) {
 let s = second();
 
 	drawReticle();
-push();
-	angleMode(DEGREES);
-	       imageMode(CENTER)
-	       let a = atan2(mouseY - height / 2, mouseX - width / 2);
-	       translate(width/2, height/2);
-	       rotate(a);
-	       image(rocket, 0, 0, 48, 26);
-pop();
+
+	// rocket ship with mouse example
+// push();
+// 	angleMode(DEGREES);
+// 	       imageMode(CENTER)
+// 	       let a = atan2(mouseY - height / 2, mouseX - width / 2);
+// 	       translate(width/2, height/2);
+// 	       rotate(a);
+// 	       image(rocket, 0, 0, 48, 26);
+// pop();
   print(score);
 
 	//----------------------------------------BALLOONS-SPAWN--------------------------------------
