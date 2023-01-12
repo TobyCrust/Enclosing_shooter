@@ -24,7 +24,7 @@ function gameOver(){
 	print("DED");
 	noStroke();
 	fill(20)
-	rect(110,200,600,250)
+	rect(510,300,1100,250)
 
 	textFont('Georgia');
 	textAlign(CENTER);

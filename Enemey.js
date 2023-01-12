@@ -35,6 +35,10 @@ class balloon{
 		noStroke();
 		fill(255, 220, 0);
 		ellipse(this.x, this.y, this.r);
+
+
+		image(asteroids[wen],this.x,this.y,40*balloonSizeMultiplier,40*balloonSizeMultiplier);
+
 		pop();
 	}
 

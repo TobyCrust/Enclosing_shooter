@@ -13,11 +13,16 @@ var sounds = [];
 let highScore = 0;
 var stars = [];
 var playerSpeed = 2;
-
+let angle = 0;
+let asteroids = [];
+let wen = 0;
 
 
 function setup() {
+
 	createCanvas(850, 700);
+	rectMode(CENTER);
+	imageMode(CENTER);
 	mode = 0;
 
 	for (var i = 0; i < 500; i++) {
@@ -53,6 +58,8 @@ function mousePressed(){
 function preload() {
   rocket= loadImage('rocket.png')
 	ufo= loadImage('UFO V2.png')
+	asteroids[0] = loadImage('asteroid 3.png');
+	asteroids[1] = loadImage('asteroid 1.png');
 	sounds.push(loadSound('bangLarge.wav'));
 	sounds.push(loadSound('bangMedium.wav'));
 	sounds.push(loadSound('bangSmall.wav'));
@@ -72,6 +79,14 @@ if (mode==1) {
 	for (var i = 0; i < stars.length; i++) {
 			stars[i].draw();
 		}
+
+	// push();
+  // translate(100, 100);
+  // rotate(angle);
+  // fill('red');
+  // rect(0, 0, 50, 50);
+  // pop();
+	// angle += 1;
 
 let s = second();
 
