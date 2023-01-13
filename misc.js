@@ -9,12 +9,12 @@ function getMouseVector(){
 function drawReticle(){
 	noFill();
 	strokeWeight(2);
-	stroke(0, 100, 125, 125);
-	ellipse(mouseX, mouseY, 12);
-	stroke(80, 160, 200, 125);
-	line(mouseX-8, mouseY-8, mouseX+8, mouseY+8);
-	line(mouseX+8, mouseY-8, mouseX-8, mouseY+8);
-	stroke(80, 160, 200, 125);
+	stroke(255, 204, 0, 200);
+	ellipse(mouseX, mouseY, 14);
+	stroke(255, 204, 0, 125);
+	line(mouseX-9, mouseY-9, mouseX+9, mouseY+9);
+	line(mouseX+9, mouseY-9, mouseX-9, mouseY+9);
+	stroke(255, 204, 0, 125);
 
 }
 

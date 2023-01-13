@@ -15,11 +15,14 @@ var stars = [];
 var playerSpeed = 2;
 let angle = 0;
 let asteroids = [];
-let wen = 0;
-
+let wen;
+let spin =0;
 
 function setup() {
 
+	wen = 0;
+
+	// wen = floor(random(0,1));
 	createCanvas(850, 700);
 	rectMode(CENTER);
 	imageMode(CENTER);
@@ -34,7 +37,7 @@ function setup() {
  	gameover = loadSound('gameover.mp3');
 
 	angleMode(DEGREES);
-	mainTurrent = new turrent(300,300);
+	mainTurrent = new turrent(0,0);
 	Retry = createButton('retry');
 	Retry.hide();
 
@@ -56,10 +59,15 @@ function mousePressed(){
 }
 
 function preload() {
-  rocket= loadImage('rocket.png')
-	ufo= loadImage('UFO V2.png')
-	asteroids[0] = loadImage('asteroid 3.png');
-	asteroids[1] = loadImage('asteroid 1.png');
+  rocket= loadImage('rocket.png');
+	ufo= loadImage('UFO V2.png');
+	for (let i = 0; i< 2; i++){
+	asteroids[i] = loadImage('asteroid' + i + '.png');
+	explosion = loadImage('explosion.gif')
+
+	}
+	// asteroids[0] = loadImage('asteroid 3.png');
+	// asteroids[1] = loadImage('asteroid 1.png');
 	sounds.push(loadSound('bangLarge.wav'));
 	sounds.push(loadSound('bangMedium.wav'));
 	sounds.push(loadSound('bangSmall.wav'));
@@ -67,6 +75,7 @@ function preload() {
 
 function draw() {
 clear();
+spin += 0.4*balloonSizeMultiplier;
 if (mode==0) {
 	text('presss Enter to start', 350, 350);
 }
