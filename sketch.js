@@ -6,7 +6,7 @@ let	mainTurrent;
 let turPosX = 850/2;
 let turPosY = 700/2;
 let targetTimer = 0;
-let balloonSpawnMultiplier = 0.1; //speed
+let balloonSpawnMultiplier = 1; //speed
 let balloonSizeMultiplier = 2;
 let score = 0;
 let Retry;
@@ -19,6 +19,7 @@ let asteroids = [];
 let wen;
 let spin =0;
 let enemyAmount = 200;
+let Start;
 
 function setup() {
 
@@ -35,13 +36,14 @@ function setup() {
 		}
 
 	song = loadSound('shoot_effect.mp3');
-	gamesong = loadSound('GameTheme.mp3');
+
  	gameover = loadSound('gameover.mp3');
 
 	angleMode(DEGREES);
 	mainTurrent = new turrent(0,0);
 	Retry = createButton('retry');
 	Retry.hide();
+	Start =  createButton('Start');
 
 
 	if (!Cookies.get('highscore')){
@@ -50,9 +52,9 @@ function setup() {
 	highScore = Cookies.get('highscore');
 }
 
-function words(){
-	createP('words');
-}
+// function words(){
+// 	createP('words');
+// }
 
 function mousePressed(){
 	let mouseVector = getMouseVector();
@@ -70,6 +72,7 @@ function preload() {
 	for (let i = 0; i< 2; i++){
 	asteroids[i] = loadImage('asteroid' + i + '.png');
 	explosion = loadImage('explosion.gif')
+	gamesong = loadSound('GameTheme.mp3');
 
 
 	}
@@ -90,6 +93,7 @@ if (mode==0) {
 }
 
 if (mode==1) {
+
 
 
 	background(27,26,26);
@@ -171,12 +175,14 @@ let s = second();
 
 	//------------------------------------------Score---------------------------------------a
 
-	textFont('Arial');
-  fill(225);
-  textAlign(LEFT);
+	textFont(pxlfont);
+	textSize(18);
+	fill(225);
+	textAlign(CENTER);
 
-  text(score,455,40);
-  text("Score",385,40);
+	text(score,425,70,);
+	textSize(24);
+	text("Score",425,40);
 
 
 	//------------------------------------------TUTORIAL------------------------------------------------
@@ -184,7 +190,7 @@ let s = second();
 	if (targetTimer < 500){
 		textAlign(LEFT);
 		textFont('Arial');
-
+		textSize(68);
 
 		text("arrow keys or wasd: move", 35, 35);
 		text("mouse: aim", 35, 50);
@@ -204,11 +210,12 @@ let s = second();
 function keyPressed(){
 	if (keyCode==ENTER){
 		mode=1;
-		setTimeout(words,3000);
+		// setTimeout(words,3000);
 		gamesong.play();
 		gameover.stop();
 	}
 }
+
 
 
 	class Star {

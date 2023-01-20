@@ -30,7 +30,7 @@ function gameOver(){
 	textAlign(CENTER);
 	textSize(15);
 	fill(225,0,0);
-	text("YOU DIED",425,280)
+	text("GAME OVER :(",425,280)
 
 
 	textSize(18);
@@ -53,6 +53,7 @@ function gameOver(){
 	Retry.style('background-color', '#202020');
 	Retry.style('color', '#FFFFFF');
 	Retry.mousePressed(reset);
+	Start.mousePressed(startGame);
 	gamesong.stop();
 	gameover.stop();
 	gameover.play();
@@ -78,4 +79,7 @@ function reset(){
 	enemyAmount = 200;
 
 	loop();
+}
+function startGame(){
+	mode = 1;
 }
