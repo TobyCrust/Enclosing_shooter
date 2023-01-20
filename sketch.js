@@ -1,11 +1,12 @@
 var mode;
+var pxlfont;
 let bulletsFired = [];
 let targetBalloons = [];
 let	mainTurrent;
 let turPosX = 850/2;
 let turPosY = 700/2;
 let targetTimer = 0;
-let balloonSpawnMultiplier = 2;
+let balloonSpawnMultiplier = 0.1; //speed
 let balloonSizeMultiplier = 2;
 let score = 0;
 let Retry;
@@ -17,6 +18,7 @@ let angle = 0;
 let asteroids = [];
 let wen;
 let spin =0;
+let enemyAmount = 200;
 
 function setup() {
 
@@ -48,6 +50,9 @@ function setup() {
 	highScore = Cookies.get('highscore');
 }
 
+function words(){
+	createP('words');
+}
 
 function mousePressed(){
 	let mouseVector = getMouseVector();
@@ -61,9 +66,11 @@ function mousePressed(){
 function preload() {
   rocket= loadImage('rocket.png');
 	ufo= loadImage('UFO V2.png');
+	pxlfont = loadFont('PressStart2P.ttf');
 	for (let i = 0; i< 2; i++){
 	asteroids[i] = loadImage('asteroid' + i + '.png');
 	explosion = loadImage('explosion.gif')
+
 
 	}
 	// asteroids[0] = loadImage('asteroid 3.png');
@@ -76,8 +83,10 @@ function preload() {
 function draw() {
 clear();
 spin += 0.4*balloonSizeMultiplier;
+textFont(pxlfont);
+textSize(30);
 if (mode==0) {
-	text('presss Enter to start', 350, 350);
+	text('Press Enter to start', 150, 350);
 }
 
 if (mode==1) {
@@ -114,7 +123,7 @@ let s = second();
 
 	//----------------------------------------BALLOONS-SPAWN--------------------------------------
 	targetTimer += 1;
-	let spawnInterval = int(100 / balloonSpawnMultiplier);
+	let spawnInterval = int(enemyAmount / balloonSpawnMultiplier);
 	//print(spawnInterval)
 	if (targetTimer % spawnInterval == 0){
 		let newBalloon = new balloon();
@@ -146,9 +155,11 @@ let s = second();
     	}
 	}
 
-	balloonSpawnMultiplier += 0.001;
+	balloonSpawnMultiplier += 0.0005; //speed
+	enemyAmount -= 0.01;
 	if (balloonSizeMultiplier < 5){
-		balloonSizeMultiplier += 0.0007;
+		balloonSizeMultiplier += 0.0004;
+
 	}
 
 	//------------------------------------------HERO-AND-HERO-DED---------------------------------------a
@@ -158,17 +169,14 @@ let s = second();
 		gameOver();
 	}
 
+	//------------------------------------------Score---------------------------------------a
 
-
+	textFont('Arial');
   fill(225);
   textAlign(LEFT);
-  textSize(30);
+
   text(score,455,40);
-
-  textSize(24);
-
   text("Score",385,40);
-
 
 
 	//------------------------------------------TUTORIAL------------------------------------------------
@@ -176,7 +184,7 @@ let s = second();
 	if (targetTimer < 500){
 		textAlign(LEFT);
 		textFont('Arial');
-		textSize(14);
+
 
 		text("arrow keys or wasd: move", 35, 35);
 		text("mouse: aim", 35, 50);
@@ -196,6 +204,7 @@ let s = second();
 function keyPressed(){
 	if (keyCode==ENTER){
 		mode=1;
+		setTimeout(words,3000);
 		gamesong.play();
 		gameover.stop();
 	}

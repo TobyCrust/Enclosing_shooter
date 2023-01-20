@@ -19,24 +19,24 @@ function drawReticle(){
 }
 
 function gameOver(){
-	push()
+	push();
 
 	print("DED");
 	noStroke();
 	fill(20)
 	rect(510,300,1100,250)
 
-	textFont('Georgia');
+	textFont(pxlfont);
 	textAlign(CENTER);
-	textSize(100);
-	fill(170,20,20);
-	text("YOU DIED",425,300)
+	textSize(15);
+	fill(225,0,0);
+	text("YOU DIED",425,280)
 
-	textFont('Arial');
+
 	textSize(18);
 	fill(235);
 	let scoreString = "score: " + score;
-	text(scoreString, 425, 340);
+	text(scoreString, 425, 330);
 
 	if (score > highScore) {
 		highScore = score;
@@ -54,7 +54,7 @@ function gameOver(){
 	Retry.style('color', '#FFFFFF');
 	Retry.mousePressed(reset);
 	gamesong.stop();
-
+	gameover.stop();
 	gameover.play();
 	pop();
 	noLoop();
@@ -62,18 +62,20 @@ function gameOver(){
 }
 
 function reset(){
+
 	Retry.hide();
 	mode = 0;
-
+	gameover.stop();
 	bulletsFired = [];
 	targetBalloons = [];
-	turPosX = 300;
-	turPosY = 300;
+	turPosX = width/2;
+	turPosY = height/2;
 	targetTimer = 0;
 	balloonSpawnMultiplier = 2;
 	balloonSizeMultiplier = 2;
 	score = 0;
 	s = 0
+	enemyAmount = 200;
 
 	loop();
 }
