@@ -15,7 +15,7 @@ class bullet{
 		fill(230, 0, 0, 135);
 		ellipse(this.x, this.y, 9);
 		fill(230, 255, 0, 135);
-		ellipse(this.x, this.y, 3);
+		ellipse(this.x, this.y, 4);
 		pop();
 	}
 

@@ -8,6 +8,7 @@ class turrent{
 		fill(26, 26, 26);
 		ellipse(turPosX, turPosY, 30);
 		image(ufo,turPosX,turPosY,40,40);
+
 		pop();
 	}
 

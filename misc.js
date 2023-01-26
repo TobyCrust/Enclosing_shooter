@@ -30,21 +30,22 @@ function gameOver(){
 	textAlign(CENTER);
 	textSize(15);
 	fill(225,0,0);
-	text("GAME OVER :(",425,280)
+	var deathWords = random(deathPhrase); // random death phrases
+	text(deathWords,425,280);
 
 
 	textSize(18);
 	fill(235);
-	let scoreString = "score: " + score;
+	let scoreString = "Score: " + score;
 	text(scoreString, 425, 330);
 
 	if (score > highScore) {
 		highScore = score;
-		Cookies.remove('highscore');
-		Cookies.set('highscore', highScore);
+		Cookies.remove('Highscore');
+		Cookies.set('Highscore', highScore);
 	}
 
-	let highScoreString = "highscore: " + highScore;
+	let highScoreString = "Highscore: " + highScore;
 	text(highScoreString, 425, 360);
 
 	Retry.show();
@@ -53,7 +54,7 @@ function gameOver(){
 	Retry.style('background-color', '#202020');
 	Retry.style('color', '#FFFFFF');
 	Retry.mousePressed(reset);
-	Start.mousePressed(startGame);
+
 	gamesong.stop();
 	gameover.stop();
 	gameover.play();
@@ -82,4 +83,5 @@ function reset(){
 }
 function startGame(){
 	mode = 1;
+
 }

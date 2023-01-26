@@ -20,6 +20,8 @@ let wen;
 let spin =0;
 let enemyAmount = 200;
 let Start;
+var deathPhrase = ["YOU DIED", "GAME OVER", "YOU BLEW UP", "BETTER LUCK NEXT TIME", "YOU SUCK"];
+var gameVolume = 1;
 
 function setup() {
 
@@ -41,9 +43,14 @@ function setup() {
 
 	angleMode(DEGREES);
 	mainTurrent = new turrent(0,0);
-	Retry = createButton('retry');
+
+	Retry = createButton('Respawn');
 	Retry.hide();
 	Start =  createButton('Start');
+	Start.size(320,100);
+	Start.style('background-color', '#ff000000');
+	Start.position(265, height/2+70);
+	// Start.style()
 
 
 	if (!Cookies.get('highscore')){
@@ -66,6 +73,7 @@ function mousePressed(){
 }
 
 function preload() {
+	titlepage = loadImage('Homepage.png');
   rocket= loadImage('rocket.png');
 	ufo= loadImage('UFO V2.png');
 	pxlfont = loadFont('PressStart2P.ttf');
@@ -85,15 +93,19 @@ function preload() {
 
 function draw() {
 clear();
+image(titlepage, width/2, height/2, 850, 700);
+Start.mousePressed(startGame); // butto to start game. will have to hide it under the other buttons
 spin += 0.4*balloonSizeMultiplier;
 textFont(pxlfont);
 textSize(30);
+gamesong.setVolume(gameVolume-0.3);
 if (mode==0) {
 	text('Press Enter to start', 150, 350);
+	Start.show();
 }
 
 if (mode==1) {
-
+Start.hide();
 
 
 	background(27,26,26);
@@ -160,10 +172,10 @@ let s = second();
 	}
 
 	balloonSpawnMultiplier += 0.0005; //speed
-	enemyAmount -= 0.01;
+	enemyAmount -= 0.015;
 	if (balloonSizeMultiplier < 5){
-		balloonSizeMultiplier += 0.0004;
-
+		balloonSizeMultiplier += 0.0002;
+		gameVolume = 1;
 	}
 
 	//------------------------------------------HERO-AND-HERO-DED---------------------------------------a
@@ -179,7 +191,6 @@ let s = second();
 	textSize(18);
 	fill(225);
 	textAlign(CENTER);
-
 	text(score,425,70,);
 	textSize(24);
 	text("Score",425,40);
@@ -191,15 +202,10 @@ let s = second();
 		textAlign(LEFT);
 		textFont('Arial');
 		textSize(68);
-
 		text("arrow keys or wasd: move", 35, 35);
 		text("mouse: aim", 35, 50);
 		text("left click: fire", 35, 65);
-
 	}
-
-
-
 
 	}
 }
@@ -211,6 +217,7 @@ function keyPressed(){
 	if (keyCode==ENTER){
 		mode=1;
 		// setTimeout(words,3000);
+
 		gamesong.play();
 		gameover.stop();
 	}
