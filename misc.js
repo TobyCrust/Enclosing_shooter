@@ -23,8 +23,8 @@ function gameOver(){
 
 	print("DED");
 	noStroke();
-	fill(20)
-	rect(510,300,1100,250)
+	fill(20);
+	rect(510,300,1100,250);
 
 	textFont(pxlfont);
 	textAlign(CENTER);
@@ -47,6 +47,10 @@ function gameOver(){
 
 	let highScoreString = "Highscore: " + highScore;
 	text(highScoreString, 425, 360);
+	textSize(8);
+	text("Made by Toby Crust", 765, 420);
+	let a = createA('http://p5js.org/', 'Toby Crust');
+	a.position(width/2, 75);
 
 	Retry.show();
 	Retry.position(390, 380);
@@ -83,5 +87,15 @@ function reset(){
 }
 function startGame(){
 	mode = 1;
+
+}
+
+function creditTime(){
+	mode = 2;
+
+}
+
+function toHome(){
+	mode = 0;
 
 }
