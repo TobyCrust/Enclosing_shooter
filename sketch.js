@@ -94,6 +94,7 @@ function preload() {
 	pxlfont = loadFont('PressStart2P.ttf');
 	for (let i = 0; i< 2; i++){
 	asteroids[i] = loadImage('asteroid' + i + '.png');
+	shot = loadImage('BulletB.png');
 	}
 	// asteroids[0] = loadImage('asteroid 3.png');
 	// asteroids[1] = loadImage('asteroid 1.png');
@@ -235,6 +236,8 @@ let s = second();
 	//------------------------------------------Credits Screen------------------------------------------------
 if (mode == 2){
 
+	push();
+
 	text("credits", 300,300);
 	Start.hide();
 	Credits.hide();
@@ -258,6 +261,11 @@ if (mode == 2){
 			textSize(35);
 			text('Homepage', 280, 365);
 
+			let a = createA('http://p5js.org/', 'Toby Crust');
+			a.position(width/2, 75);
+
+			pop();
+			
 
 
 }

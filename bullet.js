@@ -12,11 +12,10 @@ class bullet{
 
 		fill(230, 255, 0, 0);
 		ellipse(this.x, this.y, 10);
-		fill(230, 0, 0, 135);
-		ellipse(this.x, this.y, 9);
-		fill(230, 255, 0, 135);
-		ellipse(this.x, this.y, 4);
+		
+		image(shot, this.x, this.y, 20, 20);
 		pop();
+
 	}
 
 	update(){

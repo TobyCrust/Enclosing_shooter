@@ -85,6 +85,7 @@ function reset(){
 
 	loop();
 }
+
 function startGame(){
 	mode = 1;
 
@@ -92,7 +93,9 @@ function startGame(){
 
 function creditTime(){
 	mode = 2;
-
+	let a = createA('http://p5js.org/', 'Toby Crust');
+	a.position(width/2, 75);
+	noLoop();
 }
 
 function toHome(){
