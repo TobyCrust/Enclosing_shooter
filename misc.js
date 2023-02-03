@@ -47,10 +47,10 @@ function gameOver(){
 
 	let highScoreString = "Highscore: " + highScore;
 	text(highScoreString, 425, 360);
-	textSize(8);
-	text("Made by Toby Crust", 765, 420);
-	let a = createA('http://p5js.org/', 'Toby Crust');
-	a.position(width/2, 75);
+	textSize(10);
+	text("Made by ", 725, 418);
+	let a = createA('https://www.linkedin.com/in/toby-crust-a6a2a2245/', 'Toby Crust');
+	a.position(770, 410);
 
 	Retry.show();
 	Retry.position(390, 380);
@@ -89,16 +89,28 @@ function reset(){
 function startGame(){
 	mode = 1;
 
+
 }
+
+
 
 function creditTime(){
 	mode = 2;
-	let a = createA('http://p5js.org/', 'Toby Crust');
-	a.position(width/2, 75);
-	noLoop();
+
+
+}
+
+function gameSongStart(){
+	plsStart = 5;
+
+}
+
+function creditTheme(){
+	credmusc = 5;
+
 }
 
 function toHome(){
 	mode = 0;
-
+	creditMusic.stop();
 }

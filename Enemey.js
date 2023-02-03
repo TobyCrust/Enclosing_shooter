@@ -33,7 +33,7 @@ class balloon{
 	display(){
 		push();
 		noStroke();
-		fill(255, 220, 0);
+		fill(0, 0, 0);
 		ellipse(this.x, this.y, this.r);
 
 		push();

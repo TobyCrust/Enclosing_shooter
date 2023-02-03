@@ -20,11 +20,14 @@ let wen;
 let spin =0;
 let enemyAmount = 200;
 let Start;
-var deathPhrase = ["YOU DIED", "GAME OVER", "YOU BLEW UP", "BETTER LUCK NEXT TIME", "YOU SUCK"];
+var deathPhrase = ["YOU DIED", "GAME OVER", "YOU BLEW UP", "BETTER LUCK NEXT TIME", "TRY AGAIN", "YOU LOST"];
 var gameVolume = 1;
-let bgAnim;
 let Credits;
-var starSize = 3;
+var starSize = 2; // size of background stars
+let plsStart = 0;
+let credmusc = 0;
+let hue = 0;
+
 
 function setup() {
 
@@ -36,6 +39,11 @@ function setup() {
 	imageMode(CENTER);
 	mode = 0;
 
+	if (mode == 0){
+
+
+	}
+
 	for (var i = 0; i < 500; i++) {
 			stars[i] = new Star();
 		}
@@ -43,6 +51,8 @@ function setup() {
 	song = loadSound('shoot_effect.mp3');
 
  	gameover = loadSound('gameover.mp3');
+
+
 
 	angleMode(DEGREES);
 	mainTurrent = new turrent(0,0);
@@ -87,7 +97,6 @@ function mousePressed(){
 }
 
 function preload() {
-	bgAnim = loadImage('bg-anim.gif');
 	titlepage = loadImage('Homepage.png');
   rocket= loadImage('rocket.png');
 	ufo= loadImage('UFO V2.png');
@@ -103,32 +112,47 @@ function preload() {
 	sounds.push(loadSound('bangLarge.wav'));
 	sounds.push(loadSound('bangMedium.wav'));
 	sounds.push(loadSound('bangSmall.wav'));
+	creditMusic =  loadSound('Credits.mp3');
 }
 
 function draw() {
 clear();
 
 image(titlepage, width/2, height/2, 850, 700);
-push();
-image(bgAnim, 0, 0, width/2, height/2);
-pop();
-Start.mousePressed(startGame); // button to start game. will have to hide it under the other buttons
-Credits.mousePressed(creditTime); // button that takes you to credits screen
+Start.mousePressed(startGame);
+Start.mousePressed(gameSongStart);// button to start game. will have to hide it under the other buttons
+Credits.mousePressed(creditTime);
+Credits.mousePressed(creditTheme); // button that takes you to credits screen
 Home.mousePressed(toHome); //Homepage
 spin += 0.4*balloonSizeMultiplier;
 textFont(pxlfont);
 textSize(35);
 gamesong.setVolume(gameVolume-0.3);
-if (mode==0) {
+
+
+if (mode==0) { //titlescreen
+
+	credmusc = 0;
+	fill(25);
 	text('START', 330, 365);
 	Start.show();
 	Credits.show();
 	Home.hide();
 	textSize(25);
 	text('CREDITS', 330, 480);
+	textSize(40);
+	fill(hue, hue, 0);
+	text('Asteroid Feild', 160, 165,);
+	hue = hue + 1;
+  if (hue > 255) {
+    hue = 50;
+  }
+
 }
 
-if (mode==1) {
+if (mode==1) { // start of game
+
+	plsStart == 2;
 Start.hide();
 Credits.hide();
 
@@ -234,6 +258,18 @@ let s = second();
 	}
 
 	//------------------------------------------Credits Screen------------------------------------------------
+if (plsStart == 5){
+	gamesong.play();
+	plsStart = 0;
+}
+
+
+if (credmusc == 5){
+	creditMusic.play();
+	credmusc = 0;
+}
+
+
 if (mode == 2){
 
 	push();
@@ -253,19 +289,22 @@ if (mode == 2){
 			fill(220);
 			textAlign(LEFT);
 			textFont(pxlfont);
+			textSize(30);
+			text("Game creator: Toby Crust", 80, 65);
 			textSize(25);
-			text("Game creator: Toby Crust", 115, 65);
+			text("Contact details:", 35, 480);
 			textSize(15);
-			text("Illustrator: Sumaya Abrahams", 35, 200);
-			text("left click: fire", 35, 605);
+			text("tobycrust@gmail.com", 35, 520);
+			text("Homepage Illustrator: Sumaya Abrahams", 40, 200);
+			text("tobycrust.itch.io", 35, 565);
+			text("github.com/TobyCrust", 35, 605);
+			text("behance.net/tobycrust", 35, 655);
 			textSize(35);
 			text('Homepage', 280, 365);
 
-			let a = createA('http://p5js.org/', 'Toby Crust');
-			a.position(width/2, 75);
+
 
 			pop();
-			
 
 
 }
@@ -279,28 +318,19 @@ if (mode == 2){
 
 
 
-function keyPressed(){
-	if (keyCode==ENTER){
-		mode=1;
-		// setTimeout(words,3000);
-
-		gamesong.play();
-		gameover.stop();
-	}
-}
-
 
 
 	class Star {
 	constructor() {
+
 		this.x = random(width);
 		this.y = random(height);
-		this.size = random(0.25, starSize);
+		this.size = random(1.5, starSize);
 		this.t = random(TAU);
 	}
 
 	draw() {
-		this.t += 0.5;
+		this.t += 0.3;
 		var scale = this.size + sin(this.t) * 1.5;
 		noStroke();
 		ellipse(this.x, this.y, scale, scale);
