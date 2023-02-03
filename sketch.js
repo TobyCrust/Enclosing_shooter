@@ -145,7 +145,7 @@ if (mode==0) { //titlescreen
 	text('Asteroid Feild', 160, 165,);
 	hue = hue + 1;
   if (hue > 255) {
-    hue = 50;
+    hue = 0;
   }
 
 }

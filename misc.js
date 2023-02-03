@@ -48,9 +48,8 @@ function gameOver(){
 	let highScoreString = "Highscore: " + highScore;
 	text(highScoreString, 425, 360);
 	textSize(10);
-	text("Made by ", 725, 418);
-	let a = createA('https://www.linkedin.com/in/toby-crust-a6a2a2245/', 'Toby Crust');
-	a.position(770, 410);
+	text("Made by Toby Crust", 725, 418);
+
 
 	Retry.show();
 	Retry.position(390, 380);
