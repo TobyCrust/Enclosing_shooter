@@ -112,5 +112,5 @@ function creditTheme(){
 function toHome(){
 	mode = 0;
 	creditMusic.stop();
-	textAlign(CENTER);
+	textAlign(LEFT);
 }

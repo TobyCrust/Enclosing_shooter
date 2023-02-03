@@ -21,7 +21,7 @@ let spin =0;
 let enemyAmount = 200;
 let Start;
 var deathPhrase = ["YOU DIED", "GAME OVER", "YOU BLEW UP", "BETTER LUCK NEXT TIME", "TRY AGAIN", "YOU LOST"];
-var gameVolume = 1;
+var gameVolume = 0.5;
 let Credits;
 var starSize = 2; // size of background stars
 let plsStart = 0;
